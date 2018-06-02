@@ -1,0 +1,10 @@
+template: virtualmachines
+configuration:
+  PoolSize: 0
+  VirtualMachines:
+  - Image: nomad-arcade-083
+    MachineType: g1-small
+    Name: nomad
+    Ports:
+    - 4646
+    Shell: /bin/bash

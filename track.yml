@@ -1,0 +1,119 @@
+id: la33rqkx8g
+type: track
+version: 0.0.1
+slug: nomad-arcade
+icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/default.png
+title: Nomad arcade
+teaser: A short description of the track.
+description: Nomad is the fastest scheduler, are you it's fastest user?
+tags: []
+challenges:
+- id: w6llz3e5nw
+  slug: create-and-run-a-job
+  title: Create and run a job
+  teaser: Create and run a job
+  notes:
+  - type: text
+    contents: https://www.nomadproject.io/guides/operating-a-job/submitting-jobs.html
+  difficulty: basic
+  assignment: Create the example job and submit it to the local nomad server.
+  timelimit: 300
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: nomad
+- id: 7laa985q8w
+  slug: update-the-job
+  title: Update the job
+  teaser: Update the job
+  notes:
+  - type: text
+    contents: https://www.nomadproject.io/guides/operating-a-job/submitting-jobs.html
+  difficulty: basic
+  assignment: |-
+    Change the example job to run the hashicorp/http-echo:0.2.0 docker container.
+    The job should run with the arguments *-listen=8080* and *-text="insert coin"*.
+  timelimit: 300
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: nomad
+- id: ox33knmbmo
+  slug: fetch-the-logs
+  title: Fetch the logs
+  teaser: Fetch the logs
+  notes:
+  - type: text
+    contents: https://www.nomadproject.io/guides/operating-a-job/accessing-logs.html
+  difficulty: basic
+  assignment: Fetch the log output of the example job and write it to example.log
+    in your home directory.
+  timelimit: 300
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: nomad
+- id: 78ddn63gro
+  slug: canary-releases
+  title: Canary releases
+  teaser: Canary releases
+  notes:
+  - type: text
+    contents: https://www.nomadproject.io/guides/operating-a-job/update-strategies/blue-green-and-canary-deployments.html
+  difficulty: basic
+  assignment: |-
+    Change the http-echo version in the example job to 0.2.3 and change the update strategy to have 1 canary.
+    If the new job is stable, promote it.
+  timelimit: 300
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: nomad
+- id: wpdd5qjlkw
+  slug: service-discovery
+  title: Service discovery
+  teaser: Service discovery
+  notes:
+  - type: text
+    contents: https://www.nomadproject.io/docs/job-specification/service.html
+  difficulty: basic
+  assignment: |-
+    Register the http-echo service in the local consul server.
+    The service should have a http healthcheck on /.
+  timelimit: 300
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: nomad
+- id: 7yqqkn36dw
+  slug: fabio
+  title: Fabio
+  teaser: Fabio
+  notes:
+  - type: text
+    contents: https://fabiolb.net/quickstart/
+  difficulty: basic
+  assignment: Run fabiolb/fabio on nomad, to expose the http-echo service
+  timelimit: 300
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: nomad
+- id: 7bbb43j2p7
+  slug: parameterised-job
+  title: Parameterised job
+  teaser: Parameterised job
+  notes:
+  - type: text
+    contents: https://www.nomadproject.io/docs/commands/job/dispatch.html
+  difficulty: basic
+  assignment: "There is a parameterised job running called messager. \nDispatch the
+    messenger to send a message with *message=hello* and *author=arcade*."
+  timelimit: 300
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: nomad
+developers:
+- erik@instruqt.com
+published: false
