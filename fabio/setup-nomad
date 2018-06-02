@@ -1,15 +1,53 @@
-#!/bin/sh
-#
-# This is a sample setup script. Rename this file to setup-$CONTAINER
-# (where $container is the name of the container as defined in your config.yml),
-# and replace this content with your own script.
-#
-# This script will be run when you setup the challenge.
-#
-# Remember that the exit code is important. See the documentation
-# for more information.
-#
+#!/bin/bash
 
-echo "This is the setup script"
+
+
+IP=$(dig +short $HOSTNAME)
+cat <<EOF > fabio.nomad
+job "fabio" {
+  datacenters = ["dc1"]
+  type = "system"
+  update {
+    stagger = "5s"
+    max_parallel = 1
+  }
+
+  group "fabio" {
+    task "fabio" {
+      driver = "exec"
+      config {
+        command = "fabio-1.5.9-go1.10.2-linux_amd64"
+        args = ["-cfg", "/etc/fabio/fabio.properties"]
+      }
+
+      artifact {
+        source = "https://github.com/fabiolb/fabio/releases/download/v1.5.9/fabio-1.5.9-go1.10.2-linux_amd64"
+      }
+
+      template {
+        data = "registry.consul.addr = $IP:8500"
+        destination   = "/etc/fabio/fabio.properties"
+        change_mode   = "signal"
+        change_signal = "SIGINT"
+      }
+
+      resources {
+        cpu = 500
+        memory = 128
+        network {
+          mbits = 1
+
+          port "http" {
+            static = 9999
+          }
+          port "ui" {
+            static = 9998
+          }
+        }
+      }
+    }
+  }
+}
+EOF
 
 exit 0

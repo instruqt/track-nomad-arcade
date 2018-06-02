@@ -1,15 +1,37 @@
-#!/bin/sh
-#
-# This is a sample setup script. Rename this file to setup-$CONTAINER
-# (where $container is the name of the container as defined in your config.yml),
-# and replace this content with your own script.
-#
-# This script will be run when you setup the challenge.
-#
-# Remember that the exit code is important. See the documentation
-# for more information.
-#
+#!/bin/bash
 
-echo "This is the setup script"
+cat <<EOF > messenger.nomad
+job "messenger" {
+  datacenters = ["dc1"]
+
+  type = "batch"
+  parameterized {
+      meta_required = ["author", "message"]
+  }
+
+  group "messenger" {
+    count = 1
+
+    task "send" {
+      driver = "exec"
+      config {
+        command = "echo"
+        args = ["\${NOMAD_META_AUTHOR} says \${NOMAD_META_MESSAGE}"]
+      }
+
+      resources {
+        cpu    = 100
+        memory = 32
+        network {
+          mbits = 1
+        }
+      }
+    }
+  }
+}
+EOF
+
+nomad run messenger.nomad
+rm messenger.nomad
 
 exit 0

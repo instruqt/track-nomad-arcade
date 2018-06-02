@@ -78,7 +78,7 @@ challenges:
     contents: https://www.nomadproject.io/docs/job-specification/service.html
   difficulty: basic
   assignment: |-
-    Register the http-echo service in the local consul server.
+    Register the nginx service in the local consul server.
     The service should have a http healthcheck on /.
   timelimit: 300
   tabs:
@@ -93,7 +93,9 @@ challenges:
   - type: text
     contents: https://fabiolb.net/quickstart/
   difficulty: basic
-  assignment: Run fabiolb/fabio on nomad, to expose the http-echo service
+  assignment: |-
+    Run the fabio job located in your home directory with nomad.
+    Then expose the nginx service with fabio so it routes all requests for host instruqt.arcade to nginx.
   timelimit: 300
   tabs:
   - type: terminal
@@ -108,8 +110,8 @@ challenges:
     contents: https://www.nomadproject.io/docs/commands/job/dispatch.html
   difficulty: basic
   assignment: |-
-    There is a parameterised job running called messager.
-    Dispatch the messenger to send a message with *message=hello* and *author=arcade*.
+    There is a parameterised job running called messenger.
+    Dispatch the messenger to send a message with *message=hello* and *author=arcade* using metadata.
   timelimit: 300
   tabs:
   - type: terminal

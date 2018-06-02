@@ -1,15 +1,17 @@
-#!/bin/sh
-#
-# This is a sample check script. Rename this file to check-$CONTAINER
-# (where $container is the name of the container as defined in your config.yml),
-# and replace this content with your own script.
-#
-# This script will be run when you check the challenge.
-#
-# Remember that the exit code is important. See the documentation
-# for more information.
-#
+#!/bin/bash
+IP=$(dig +short $HOSTNAME)
+CONSUL_HTTP_ADDR="http://$IP:8500"
 
-echo "This is the check script"
+NGINX_SERVICES=$(curl -s $CONSUL_HTTP_ADDR/v1/catalog/service/nginx | jq '. | length')
+if [ "$NGINX_SERVICES" == 0 ]; then
+  fail-message "There are no nginx services registered in consul"
+  exit 1
+fi
+
+NGINX_HEALTH=$(curl -s $CONSUL_HTTP_ADDR/v1/health/checks/nginx | jq '.[] | select(.Status == "passing")')
+if [ -z NGINX_HEALTH]; then
+  fail-message "The healthcheck of the nginx service is not passing"
+  exit 1
+fi
 
 exit 0

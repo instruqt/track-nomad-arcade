@@ -1,0 +1,4 @@
+nomad stop fabio
+nomad stop example
+rm fabio.nomad
+rm example.nomad

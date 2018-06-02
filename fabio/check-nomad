@@ -1,15 +1,24 @@
-#!/bin/sh
-#
-# This is a sample check script. Rename this file to check-$CONTAINER
-# (where $container is the name of the container as defined in your config.yml),
-# and replace this content with your own script.
-#
-# This script will be run when you check the challenge.
-#
-# Remember that the exit code is important. See the documentation
-# for more information.
-#
+#!/bin/bash
 
-echo "This is the check script"
+# Check that fabio is running
+JOB_ID=$(curl -s localhost:4646/v1/job/fabio | jq -r .ID)
+if [ "$JOB_ID" != "fabio" ]; then
+  fail-message "There is no job with id fabio. Did you forget to run it?"
+  exit 1
+fi
+
+# Check if it is currently running
+JOB_STATUS=$(curl -s localhost:4646/v1/job/fabio | jq -r .Status)
+if [ "$JOB_STATUS" != "running" ]; then
+  fail-message "The fabio job is not currently running. Did you check the status of the job?"
+  exit 1
+fi
+
+# Check if we can reach the nginx service through fabio
+STATUS=$(curl -s -o /dev/null -w '%{http_code}' -H 'Host: instruqt.arcade' http://localhost:9999)
+if [ "$STATUS" != 200 ]; then
+  fail-message "Could not reach the nginx task through fabio. Did you add the correct urlprefix?"
+  exit 1
+fi
 
 exit 0

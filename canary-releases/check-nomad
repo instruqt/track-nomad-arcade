@@ -1,21 +1,21 @@
 #!/bin/bash
 
 # Check if there is a job with desired canaries = 1
-DESIRED_CANARIES=$(curl localhost:4646/v1/deployments | jq '.[] | select(.TaskGroups.website.DesiredCanaries == 1)')
+DESIRED_CANARIES=$(curl -s localhost:4646/v1/deployments | jq '.[] | select(.TaskGroups.website.DesiredCanaries == 1)')
 if [ -z "$DESIRED_CANARIES" ]; then
   fail-message "There is no example job that has canary set to 1"
   exit 1
 fi
 
 # Check if the canary was successfully placed
-echo "$DESIRED_CANARIES" | jq '.TaskGroups.website.PlacedCanaries | length'
+PLACED_CANARIES=$(echo "$DESIRED_CANARIES" | jq '.TaskGroups.website.PlacedCanaries | length')
 if [ "$PLACED_CANARIES" != 1 ]; then
   fail-message "The canary release was not successfully placed"
   exit 1
 fi
 
 # Check if the canary was promoted
-echo "$DESIRED_CANARIES" | jq '.TaskGroups.website.Promoted'
+PROMOTED_CANARIES=$(echo "$DESIRED_CANARIES" | jq '.TaskGroups.website.Promoted')
 if [ "$PROMOTED_CANARIES" != "true" ]; then
   fail-message "The canary release was not promoted"
   exit 1
