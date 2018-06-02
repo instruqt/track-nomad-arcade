@@ -1,14 +1,51 @@
-#!/bin/sh
-#
-# This is a sample setup script. Rename this file to setup-$CONTAINER
-# (where $container is the name of the container as defined in your config.yml),
-# and replace this content with your own script.
-#
-# This script will be run when you setup the challenge.
-#
-# Remember that the exit code is important. See the documentation
-# for more information.
-#
+#!/bin/bash
+IP=$(dig +short $HOSTNAME)
 
+# Bootstrap consul "cluster"
+mkdir -p /etc/consul.d
+cat <<EOF > /etc/consul.d/server.hcl
+data_dir = "/tmp/consul"
+log_level = "DEBUG"
+server = true
+bootstrap_expect = 1
+bind_addr = "$IP"
+client_addr = "$IP"
+ui = true
+EOF
+
+systemctl restart consul
+
+# Bootstrap nomad "cluster"
+mkdir -p /etc/nomad.d
+cat <<EOF > /etc/nomad.d/server.hcl
+log_level = "DEBUG"
+data_dir = "/tmp/nomad"
+
+server {
+  enabled = true
+  bootstrap_expect = 1
+}
+
+client {
+  enabled = true
+}
+
+consul {
+  address = "$IP:8500"
+
+  server_service_name = "nomad"
+  client_service_name = "nomad-client"
+
+  auto_advertise = true
+
+  server_auto_join = true
+  client_auto_join = true
+}
+EOF
+
+systemctl restart nomad
+
+# Pre-pull the image for the first challenge
 docker pull redis:3.2
+
 exit 0

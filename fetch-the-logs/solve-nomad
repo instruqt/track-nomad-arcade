@@ -1,0 +1,8 @@
+#!/bin/bash
+JOB_ALLOCATION=$(curl localhost:4646/v1/allocations | jq -r '.[] | select((.ClientStatus == "running") and (.JobID == "example")).ID')
+if [ -z "$JOB_ALLOCATION" ]; then
+  fail-message "No running job found for the example job"
+  exit 1
+fi
+
+nomad alloc logs $JOB_ALLOCATION > output.log

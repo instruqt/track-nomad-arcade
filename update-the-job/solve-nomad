@@ -1,0 +1,33 @@
+#!/bin/bash
+cat <<EOF > example.nomad
+job "example" {
+  datacenters = ["dc1"]
+  type = "service"
+
+  group "website" {
+    count = 1
+
+    task "nginx" {
+      driver = "docker"
+
+      config {
+        image = "nginx:1.13-alpine"
+        port_map {
+          http = 80
+        }
+      }
+
+      resources {
+        cpu    = 500
+        memory = 256
+        network {
+          mbits = 10
+          port "http" {}
+        }
+      }
+    }
+  }
+}
+EOF
+
+nomad run example.nomad

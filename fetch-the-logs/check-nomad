@@ -1,15 +1,28 @@
-#!/bin/sh
-#
-# This is a sample check script. Rename this file to check-$CONTAINER
-# (where $container is the name of the container as defined in your config.yml),
-# and replace this content with your own script.
-#
-# This script will be run when you check the challenge.
-#
-# Remember that the exit code is important. See the documentation
-# for more information.
-#
+#!/bin/bash
 
-echo "This is the check script"
+# Check if there is an output.log file
+if [! -f "output.log"]; then
+  fail-message "There is no output.log file"
+  exit 1
+fi
+
+# Get the job allocation so we can get the logs
+JOB_ALLOCATION=$(curl localhost:4646/v1/allocations | jq -r '.[] | select((.ClientStatus == "running") and (.JobID == "example")).ID')
+if [ -z "$JOB_ALLOCATION" ]; then
+  fail-message "No running job found for the example job"
+  exit 1
+fi
+
+# Get the logs for the job allocation 
+# and compare it to the output.log file
+nomad alloc logs $JOB_ALLOCATION > check.log
+DIFF=$(diff -q check.log output.log)
+if [ -z $DIFF ]; then
+  fail-message "The output.log file differs from the example job log output"
+  exit 1
+fi
+
+# Cleanup
+rm check.log
 
 exit 0

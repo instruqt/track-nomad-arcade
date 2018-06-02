@@ -2,16 +2,16 @@ id: la33rqkx8g
 type: track
 version: 0.0.1
 slug: nomad-arcade
-icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/default.png
-title: Nomad arcade
-teaser: A short description of the track.
+icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/nomad.png
+title: Nomad
+teaser: Nomad is the fastest scheduler, are you it's fastest user?
 description: Nomad is the fastest scheduler, are you it's fastest user?
 tags: []
 challenges:
 - id: w6llz3e5nw
   slug: create-and-run-a-job
   title: Create and run a job
-  teaser: Create and run a job
+  teaser: Create and run your first job.
   notes:
   - type: text
     contents: https://www.nomadproject.io/guides/operating-a-job/submitting-jobs.html
@@ -30,9 +30,9 @@ challenges:
   - type: text
     contents: https://www.nomadproject.io/guides/operating-a-job/submitting-jobs.html
   difficulty: basic
-  assignment: |-
-    Change the example job to run the hashicorp/http-echo:0.2.0 docker container.
-    The job should run with the arguments *-listen=8080* and *-text="insert coin"*.
+  assignment: "Change the example job so it has a task group called website. \nInside
+    should be a task called nginx that runs the nginx:1.13-alpine docker image.\nIt
+    should expose port 80."
   timelimit: 300
   tabs:
   - type: terminal
@@ -41,13 +41,13 @@ challenges:
 - id: ox33knmbmo
   slug: fetch-the-logs
   title: Fetch the logs
-  teaser: Fetch the logs
+  teaser: Fetch log output of your jobs.
   notes:
   - type: text
     contents: https://www.nomadproject.io/guides/operating-a-job/accessing-logs.html
   difficulty: basic
-  assignment: Fetch the log output of the example job and write it to example.log
-    in your home directory.
+  assignment: Fetch the log output of the example job and write it to output.log in
+    your home directory.
   timelimit: 300
   tabs:
   - type: terminal
@@ -56,13 +56,13 @@ challenges:
 - id: 78ddn63gro
   slug: canary-releases
   title: Canary releases
-  teaser: Canary releases
+  teaser: Release new versions into the wild.
   notes:
   - type: text
     contents: https://www.nomadproject.io/guides/operating-a-job/update-strategies/blue-green-and-canary-deployments.html
   difficulty: basic
   assignment: |-
-    Change the http-echo version in the example job to 0.2.3 and change the update strategy to have 1 canary.
+    Change the nginx version in the example job to 1.14-alpine and change the update strategy to have 1 canary.
     If the new job is stable, promote it.
   timelimit: 300
   tabs:
@@ -72,7 +72,7 @@ challenges:
 - id: wpdd5qjlkw
   slug: service-discovery
   title: Service discovery
-  teaser: Service discovery
+  teaser: Discover nomad services.
   notes:
   - type: text
     contents: https://www.nomadproject.io/docs/job-specification/service.html
@@ -88,7 +88,7 @@ challenges:
 - id: 7yqqkn36dw
   slug: fabio
   title: Fabio
-  teaser: Fabio
+  teaser: Expose nomad services to the internet.
   notes:
   - type: text
     contents: https://fabiolb.net/quickstart/
@@ -102,13 +102,14 @@ challenges:
 - id: 7bbb43j2p7
   slug: parameterised-job
   title: Parameterised job
-  teaser: Parameterised job
+  teaser: Dispatch existing jobs with different parameters.
   notes:
   - type: text
     contents: https://www.nomadproject.io/docs/commands/job/dispatch.html
   difficulty: basic
-  assignment: "There is a parameterised job running called messager. \nDispatch the
-    messenger to send a message with *message=hello* and *author=arcade*."
+  assignment: |-
+    There is a parameterised job running called messager.
+    Dispatch the messenger to send a message with *message=hello* and *author=arcade*.
   timelimit: 300
   tabs:
   - type: terminal

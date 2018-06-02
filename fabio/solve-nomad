@@ -1,0 +1,2 @@
+nomad init
+nomad run example.nomad

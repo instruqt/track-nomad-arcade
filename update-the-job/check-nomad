@@ -1,15 +1,26 @@
-#!/bin/sh
-#
-# This is a sample check script. Rename this file to check-$CONTAINER
-# (where $container is the name of the container as defined in your config.yml),
-# and replace this content with your own script.
-#
-# This script will be run when you check the challenge.
-#
-# Remember that the exit code is important. See the documentation
-# for more information.
-#
+#!/bin/bash
 
-echo "This is the check script"
+# Check if there is a group called website and task called nginx
+
+# Get the allocation for example that is running
+JOB_ALLOCATION=$(curl localhost:4646/v1/allocations | jq -r '.[] | select((.ClientStatus == "running") and (.JobID == "example")).ID')
+if [ -z "$JOB_ALLOCATION" ]; then
+  fail-message "No running job found for the example job"
+  exit 1
+fi
+
+# Get the address of the nginx task
+JOB_ADDRESS=$(curl -s localhost:4646/v1/allocation/$JOB_ALLOCATION | jq -r '.TaskResources.nginx.Networks[0] | "\(.IP):\(.DynamicPorts[0].Value)"')
+if [ -z "$JOB_ADDRESS" ]; then
+  fail-message "No address found for nginx task"
+  exit 1
+fi
+
+# See if the nginx task is reachable
+STATUS=$(curl -s -o /dev/null -w '%{http_code}' $JOB_ADDRESS)
+if [ "$STATUS" != 200 ]; then
+  fail-message "Could not reach the nginx task"
+  exit 1
+fi
 
 exit 0
