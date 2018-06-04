@@ -7,15 +7,8 @@ if [ -z "$DESIRED_CANARIES" ]; then
   exit 1
 fi
 
-# Check if the canary was successfully placed
-PLACED_CANARIES=$(echo "$DESIRED_CANARIES" | jq '.TaskGroups.website.PlacedCanaries | length')
-if [ "$PLACED_CANARIES" -eq 0 ]; then
-  fail-message "The canary release was not successfully placed"
-  exit 1
-fi
-
 # Check if the canary was promoted
-PROMOTED_CANARIES=$(echo "$DESIRED_CANARIES" | jq '.TaskGroups.website.Promoted')
+PROMOTED_CANARIES=$(echo "$DESIRED_CANARIES"| jq '.TaskGroups | select (.website.Promoted) | length > 0')
 if [ "$PROMOTED_CANARIES" != "true" ]; then
   fail-message "The canary release was not promoted"
   exit 1
