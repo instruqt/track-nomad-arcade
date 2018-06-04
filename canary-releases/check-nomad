@@ -9,7 +9,7 @@ fi
 
 # Check if the canary was successfully placed
 PLACED_CANARIES=$(echo "$DESIRED_CANARIES" | jq '.TaskGroups.website.PlacedCanaries | length')
-if [ "$PLACED_CANARIES" != 1 ]; then
+if [ "$PLACED_CANARIES" == 0 ]; then
   fail-message "The canary release was not successfully placed"
   exit 1
 fi
