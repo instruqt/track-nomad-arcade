@@ -30,9 +30,11 @@ challenges:
   - type: text
     contents: https://www.nomadproject.io/guides/operating-a-job/submitting-jobs.html
   difficulty: basic
-  assignment: "Change the example job so it has a task group called website. \nInside
-    should be a task called nginx that runs the nginx:1.13-alpine docker image.\nIt
-    should expose port 80."
+  assignment: |-
+    Change the example job so it has a task group called website.
+
+    Inside should be a task called nginx that runs the nginx:1.13-alpine docker image.
+    It should expose port 80.
   timelimit: 300
   tabs:
   - type: terminal
@@ -69,6 +71,22 @@ challenges:
   - type: terminal
     title: Shell
     hostname: nomad
+- id: 7bbb43j2p7
+  slug: parameterised-job
+  title: Parameterised job
+  teaser: Dispatch existing jobs with different parameters.
+  notes:
+  - type: text
+    contents: https://www.nomadproject.io/docs/commands/job/dispatch.html
+  difficulty: basic
+  assignment: |-
+    There is a parameterised job running called messenger.
+    Dispatch the messenger to send a message with *message=hello* and *author=arcade* using metadata.
+  timelimit: 300
+  tabs:
+  - type: terminal
+    title: Shell
+    hostname: nomad
 - id: wpdd5qjlkw
   slug: service-discovery
   title: Service discovery
@@ -96,22 +114,6 @@ challenges:
   assignment: |-
     Run the fabio job located in your home directory with nomad.
     Then expose the nginx service with fabio so it routes all requests for host instruqt.arcade to nginx.
-  timelimit: 300
-  tabs:
-  - type: terminal
-    title: Shell
-    hostname: nomad
-- id: 7bbb43j2p7
-  slug: parameterised-job
-  title: Parameterised job
-  teaser: Dispatch existing jobs with different parameters.
-  notes:
-  - type: text
-    contents: https://www.nomadproject.io/docs/commands/job/dispatch.html
-  difficulty: basic
-  assignment: |-
-    There is a parameterised job running called messenger.
-    Dispatch the messenger to send a message with *message=hello* and *author=arcade* using metadata.
   timelimit: 300
   tabs:
   - type: terminal
