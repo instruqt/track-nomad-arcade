@@ -1,6 +1,6 @@
 template: virtualmachines
 configuration:
-  PoolSize: 0
+  PoolSize: 1
   VirtualMachines:
   - Image: nomad-arcade-083
     MachineType: g1-small
