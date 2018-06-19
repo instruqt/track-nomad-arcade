@@ -5,8 +5,14 @@ slug: nomad-arcade
 icon: https://storage.googleapis.com/instruqt-frontend/arcade/images/nomad-lower-res.gif
 title: Nomad
 teaser: Nomad is the fastest scheduler, are you it's fastest user?
-description: Nomad is the fastest scheduler, are you it's fastest user?
-tags: []
+description: |-
+  Nomad is the fastest scheduler, are you it's fastest user?
+
+  This track is part of the HashiDays Amsterdam 2018 Instruqt Arcade Challenge. Play the track on our Arcade machine, or try your luck here.
+tags:
+- Nomad
+- arcade
+- HashiCorp
 challenges:
 - id: w6llz3e5nw
   slug: create-and-run-a-job
@@ -14,7 +20,13 @@ challenges:
   teaser: Create and run your first job.
   notes:
   - type: text
-    contents: https://www.nomadproject.io/guides/operating-a-job/submitting-jobs.html
+    contents: Nomad is a single binary that schedules applications and services on
+      Linux, Windows, and Mac. It is an open source scheduler that uses a declarative
+      job file for scheduling virtualized, containerized, and standalone applications.
+  - type: text
+    contents: |-
+      For this challenge we've already started a Nomad server for you. All you need to do is to schedule the example job to the local server.
+      See the [Getting Started](https://www.nomadproject.io/intro/getting-started/jobs.html) guide for details.
   difficulty: basic
   assignment: Create the example job and submit it to the local nomad server.
   timelimit: 300
@@ -28,7 +40,28 @@ challenges:
   teaser: Update the job
   notes:
   - type: text
-    contents: https://www.nomadproject.io/guides/operating-a-job/submitting-jobs.html
+    contents: The Nomad job specification (or "jobspec" for short) defines the schema
+      for Nomad jobs. Nomad jobs are specified in [HCL](https://github.com/hashicorp/hcl),
+      which aims to strike a balance between human readable and editable, and machine-friendly.
+  - type: text
+    contents: The job specification is broken down into smaller pieces, which you
+      will find expanded in the navigation menu. We recommend getting started at the
+      [job](https://www.nomadproject.io/docs/job-specification/job.html) stanza.
+  - type: text
+    contents: |-
+      The general hierarchy for a job is:
+
+      ```
+      job
+        \_ group
+              \_ task
+      ```
+
+      Each job file has only a single job, however a job may have multiple groups, and each group may have multiple tasks. Groups contain a set of tasks that are co-located on a machine.
+  - type: text
+    contents: To learn about all the details on how to configure jobs, view the [job
+      specification](https://www.nomadproject.io/docs/job-specification/index.html)
+      documentation.
   difficulty: basic
   assignment: |-
     Change the example job so it has a task group called website.
@@ -46,7 +79,14 @@ challenges:
   teaser: Fetch log output of your jobs.
   notes:
   - type: text
-    contents: https://www.nomadproject.io/guides/operating-a-job/accessing-logs.html
+    contents: Viewing application logs is critical for debugging issues, examining
+      performance problems, or even just verifying the application started correctly.
+  - type: text
+    contents: When submitting a job, Nomad will allocate the (groups of) tasks to
+      an available node.
+  - type: text
+    contents: To [view the logs](https://www.nomadproject.io/guides/operating-a-job/accessing-logs.html)
+      for your application you'll need the allocation id for your job.
   difficulty: basic
   assignment: Fetch the log output of the example job and write it to output.log in
     your home directory.
@@ -61,7 +101,21 @@ challenges:
   teaser: Release new versions into the wild.
   notes:
   - type: text
-    contents: https://www.nomadproject.io/guides/operating-a-job/update-strategies/blue-green-and-canary-deployments.html
+    contents: Most applications are long-lived and require updates over time. Nomad
+      has built-in support for rolling, blue/green, and canary updates.
+  - type: text
+    contents: Canary updates are a useful way to test a new version of a job before
+      beginning a rolling upgrade.
+  - type: text
+    contents: |-
+      With the [update stanza](https://www.nomadproject.io/guides/operating-a-job/update-strategies/blue-green-and-canary-deployments.html#canary-deployments) of your job specification, you can add a Canary verion of your application.
+
+      When the job specification is updated, Nomad creates the canaries without stopping any allocations from the previous job.
+  - type: text
+    contents: |-
+      After deploying the new version along side the old version, and we have determined it is functioning properly, we want to transition fully to the new version.
+
+      Doing so is as simple as [promoting the deployment](https://www.nomadproject.io/docs/commands/job/promote.html).
   difficulty: basic
   assignment: |-
     Change the nginx version in the example job to 1.14-alpine and change the update strategy to have 1 canary.
@@ -77,7 +131,15 @@ challenges:
   teaser: Dispatch existing jobs with different parameters.
   notes:
   - type: text
-    contents: https://www.nomadproject.io/docs/commands/job/dispatch.html
+    contents: |-
+      A parameterized job is used to encapsulate a set of work that can be carried out on various inputs much like a function definition.
+
+      When the [parameterized stanza](https://www.nomadproject.io/docs/job-specification/parameterized.html) is added to a job, the job acts as a function to the cluster as a whole.
+  - type: text
+    contents: |-
+      To invoke a parameterized job, use [nomad job dispatch](https://www.nomadproject.io/docs/commands/job/dispatch.html) or the equivalent HTTP APIs.
+
+      When invoking a parameterized job, a payload and/or metadata can be injected into the job.
   difficulty: basic
   assignment: |-
     There is a parameterised job running called messenger.
@@ -93,7 +155,19 @@ challenges:
   teaser: Discover nomad services.
   notes:
   - type: text
-    contents: https://www.nomadproject.io/docs/job-specification/service.html
+    contents: |-
+      Nomad schedules workloads of various types across a cluster of generic hosts. Because of this, placement is not known in advance.
+
+      You will need to use [service discovery](https://www.nomadproject.io/docs/service-discovery/index.html) to connect tasks to other services deployed across your cluster.
+  - type: text
+    contents: |-
+      Nomad integrates with [Consul](https://www.nomadproject.io/docs/agent/configuration/consul.html) to provide service discovery and monitoring.
+
+      For this challenge a Consul server has already been configured for you.
+  - type: text
+    contents: The [service stanza](https://www.nomadproject.io/docs/job-specification/service.html)
+      instructs Nomad to register the task as a service using the service discovery
+      integration.
   difficulty: basic
   assignment: |-
     Register the nginx service in the local consul server.
@@ -109,7 +183,19 @@ challenges:
   teaser: Expose nomad services to the internet.
   notes:
   - type: text
-    contents: https://fabiolb.net/quickstart/
+    contents: |-
+      [Fabio](https://fabiolb.net) is an HTTP and TCP reverse proxy that configures itself with data from Consul.
+
+      Fabio updates its routing table directly from the data stored in Consul as soon as there is a change, the need to restart or reload its configuration.
+  - type: text
+    contents: |-
+      [Fabio](https://fabiolb.net) is an HTTP and TCP reverse proxy that configures itself with data from Consul.
+
+      Fabio updates its routing table directly from the data stored in Consul as soon as there is a change, the need to restart or reload its configuration.
+  - type: text
+    contents: When you register a service in Consul, all you need to add is a [tag](https://fabiolb.net/quickstart/)
+      that defines the url and/or path the service will be available on, and Fabio
+      will do the rest.
   difficulty: basic
   assignment: |-
     Run the fabio job located in your home directory with nomad.
@@ -120,6 +206,7 @@ challenges:
     title: Shell
     hostname: nomad
 developers:
+- ade@instruqt.com
 - erik@instruqt.com
 - jackson.nic@gmail.com
 published: false
