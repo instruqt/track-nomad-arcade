@@ -45,8 +45,9 @@ challenges:
       which aims to strike a balance between human readable and editable, and machine-friendly.
   - type: text
     contents: The job specification is broken down into smaller pieces, which you
-      will find expanded in the navigation menu. We recommend getting started at the
-      [job](https://www.nomadproject.io/docs/job-specification/job.html) stanza.
+      will find in the [documentation](https://www.nomadproject.io/docs/job-specification).
+      We recommend getting started at the [job](https://www.nomadproject.io/docs/job-specification/job.html)
+      stanza.
   - type: text
     contents: |-
       The general hierarchy for a job is:
@@ -54,7 +55,7 @@ challenges:
       ```
       job
         \_ group
-              \_ task
+               \_ task
       ```
 
       Each job file has only a single job, however a job may have multiple groups, and each group may have multiple tasks. Groups contain a set of tasks that are co-located on a machine.
