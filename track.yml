@@ -189,11 +189,6 @@ challenges:
 
       Fabio updates its routing table directly from the data stored in Consul as soon as there is a change, the need to restart or reload its configuration.
   - type: text
-    contents: |-
-      [Fabio](https://fabiolb.net) is an HTTP and TCP reverse proxy that configures itself with data from Consul.
-
-      Fabio updates its routing table directly from the data stored in Consul as soon as there is a change, the need to restart or reload its configuration.
-  - type: text
     contents: When you register a service in Consul, all you need to add is a [tag](https://fabiolb.net/quickstart/)
       that defines the url and/or path the service will be available on, and Fabio
       will do the rest.
