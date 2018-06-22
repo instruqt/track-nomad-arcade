@@ -4,7 +4,7 @@ version: 0.0.1
 slug: nomad-arcade
 icon: https://storage.googleapis.com/instruqt-frontend/arcade/images/nomad-lower-res.gif
 title: Nomad
-teaser: Nomad is the fastest scheduler, are you it's fastest user?
+teaser: Operating jobs with Nomad.
 description: |-
   Nomad is the fastest scheduler, are you it's fastest user?
 
