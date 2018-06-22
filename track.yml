@@ -1,4 +1,4 @@
-id: la33rqkx8g
+id: zdlymrm8uc4y
 type: arcade
 version: 0.0.1
 slug: nomad-arcade
@@ -14,7 +14,7 @@ tags:
 - arcade
 - HashiCorp
 challenges:
-- id: w6llz3e5nw
+- id: tywznlpm1xxb
   slug: create-and-run-a-job
   title: Create and run a job
   teaser: Create and run your first job.
@@ -34,7 +34,7 @@ challenges:
   - type: terminal
     title: Shell
     hostname: nomad
-- id: 7laa985q8w
+- id: vlwrzmnefvo2
   slug: update-the-job
   title: Update the job
   teaser: Update the job
@@ -74,7 +74,7 @@ challenges:
   - type: terminal
     title: Shell
     hostname: nomad
-- id: ox33knmbmo
+- id: 3rjuvfzm839t
   slug: fetch-the-logs
   title: Fetch the logs
   teaser: Fetch log output of your jobs.
@@ -96,7 +96,7 @@ challenges:
   - type: terminal
     title: Shell
     hostname: nomad
-- id: 78ddn63gro
+- id: iuyily5crxfz
   slug: canary-releases
   title: Canary releases
   teaser: Release new versions into the wild.
@@ -126,7 +126,7 @@ challenges:
   - type: terminal
     title: Shell
     hostname: nomad
-- id: 7bbb43j2p7
+- id: hxoxag89f2sv
   slug: parameterised-job
   title: Parameterised job
   teaser: Dispatch existing jobs with different parameters.
@@ -150,7 +150,7 @@ challenges:
   - type: terminal
     title: Shell
     hostname: nomad
-- id: wpdd5qjlkw
+- id: syt4sgmgp7yn
   slug: service-discovery
   title: Service discovery
   teaser: Discover nomad services.
@@ -178,7 +178,7 @@ challenges:
   - type: terminal
     title: Shell
     hostname: nomad
-- id: 7yqqkn36dw
+- id: pmuigujsqbwa
   slug: fabio
   title: Fabio
   teaser: Expose nomad services to the internet.
@@ -204,5 +204,4 @@ challenges:
 developers:
 - ade@instruqt.com
 - erik@instruqt.com
-- jackson.nic@gmail.com
 published: false
