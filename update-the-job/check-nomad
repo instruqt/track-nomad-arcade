@@ -15,6 +15,12 @@ if [ -z "$JOB_GROUP" ]; then
   exit 1
 fi
 
+TASK=$(curl -s localhost:4646/v1/allocation/$JOB_ALLOCATION | jq -r '.TaskResources.nginx')
+if [ "$TASK" == "null" ]; then
+  fail-message "No task 'nginx' found for the example job"
+  exit 1
+fi
+
 # Get the address of the nginx task
 JOB_ADDRESS=$(curl -s localhost:4646/v1/allocation/$JOB_ALLOCATION | jq -r '.TaskResources.nginx.Networks[0] | "\(.IP):\(.DynamicPorts[0].Value)"')
 if [ "$JOB_ADDRESS" == "null:null" ]; then
@@ -25,7 +31,7 @@ fi
 # See if the nginx task is reachable
 STATUS=$(curl -s -o /dev/null -w '%{http_code}' $JOB_ADDRESS)
 if [ "$STATUS" != 200 ]; then
-  fail-message "Could not reach the nginx task"
+  fail-message "Could not reach nginx, is it running on port 80?"
   exit 1
 fi
 

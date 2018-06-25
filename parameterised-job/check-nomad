@@ -6,9 +6,15 @@ if [ -z "$ALLOCATION_ID" ]; then
   exit 1
 fi
 
+MESSAGES=$(nomad logs "$ALLOCATION_ID")
+if [ -z "$MESSAGES" ]; then
+  fail-message "No messages were sent by the messenger. Did the job dispatch correctly?"
+  exit 1
+fi
+
 MESSAGE_COUNT=$(nomad logs "$ALLOCATION_ID" | grep "arcade says hello" | wc -l)
 if [ "$MESSAGE_COUNT" == 0 ]; then
-  fail-message "No messages were sent by the messenger. Did the job dispatch correctly?"
+  fail-message "The messenger did not send the expected message. Did you set all parameters correctly?"
   exit 1
 fi
 

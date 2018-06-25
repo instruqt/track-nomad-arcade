@@ -145,6 +145,8 @@ challenges:
   assignment: |-
     There is a parameterised job running called messenger.
     Dispatch the messenger to send a message with *message=hello* and *author=arcade* using metadata.
+
+    Make sure the job has completed succesfully.
   timelimit: 300
   tabs:
   - type: terminal
