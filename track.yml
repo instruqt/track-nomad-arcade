@@ -28,7 +28,7 @@ challenges:
       For this challenge we've already started a Nomad server for you. All you need to do is to schedule the example job to the local server.
       See the [Getting Started](https://www.nomadproject.io/intro/getting-started/jobs.html) guide for details.
   difficulty: basic
-  assignment: Create the example job and submit it to the local nomad server.
+  assignment: Init the example job and submit it to the local nomad server.
   timelimit: 300
   tabs:
   - type: terminal
