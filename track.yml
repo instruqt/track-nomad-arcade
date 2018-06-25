@@ -2,7 +2,7 @@ id: la33rqkx8g
 type: arcade
 version: 0.0.1
 slug: nomad-arcade
-icon: https://storage.googleapis.com/instruqt-frontend/arcade/images/nomad-lower-res.gif
+icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/nomad.png
 title: Nomad
 teaser: Operating jobs with Nomad.
 description: |-
