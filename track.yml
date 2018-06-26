@@ -10,8 +10,8 @@ description: |-
 
   This track is part of the HashiDays Amsterdam 2018 Instruqt Arcade Challenge. Play the track on our Arcade machine, or try your luck here.
 tags:
-- Nomad
 - HashiCorp
+- Nomad
 - arcade
 challenges:
 - id: w6llz3e5nw
