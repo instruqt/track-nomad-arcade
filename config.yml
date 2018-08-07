@@ -1,10 +1,6 @@
-template: virtualmachines
-configuration:
-  PoolSize: 1
-  VirtualMachines:
-  - Image: nomad-arcade-083
-    MachineType: g1-small
-    Name: nomad
-    Ports:
-    - 4646
-    Shell: /bin/bash
+version: 2
+virtualmachines:
+- name: nomad
+  image: instruqt/nomad-arcade-083
+  machine_type: g1-small
+  shell: /bin/bash
