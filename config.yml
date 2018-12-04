@@ -1,6 +1,6 @@
-version: 2
+version: "2"
 virtualmachines:
 - name: nomad
   image: instruqt/nomad-arcade-083
-  machine_type: g1-small
   shell: /bin/bash
+  machine_type: g1-small
