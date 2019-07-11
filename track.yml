@@ -1,5 +1,5 @@
 slug: nomad-arcade
-id: la33rqkx8g
+id: jvoqisywzyn4
 type: arcade
 title: Nomad
 teaser: Nomad is the fastest scheduler, are you it's fastest user?
@@ -12,18 +12,15 @@ tags:
 - HashiCorp
 - Nomad
 - arcade
-owner: hashicorp
+owner: instruqt
 developers:
-- anubhav9mishra@gmail.com
-- erik@instruqt.com
+- niels@instruqt.com
 - ade@instruqt.com
-- jackson.nic@gmail.com
-- geoffrey@hashicorp.com
-private: false
+private: true
 published: true
 challenges:
 - slug: create-and-run-a-job
-  id: w6llz3e5nw
+  id: lzjy2cxhebjy
   type: challenge
   title: Create and run a job
   teaser: Create and run your first job.
@@ -44,7 +41,7 @@ challenges:
   difficulty: basic
   timelimit: 300
 - slug: update-the-job
-  id: 7laa985q8w
+  id: fwmqctkpwer6
   type: challenge
   title: Update the job
   teaser: Update the job
@@ -85,7 +82,7 @@ challenges:
   difficulty: basic
   timelimit: 300
 - slug: fetch-the-logs
-  id: ox33knmbmo
+  id: gksnqd1yoey6
   type: challenge
   title: Fetch the logs
   teaser: Fetch log output of your jobs.
@@ -108,7 +105,7 @@ challenges:
   difficulty: basic
   timelimit: 300
 - slug: canary-releases
-  id: 78ddn63gro
+  id: masuw97jizuc
   type: challenge
   title: Canary releases
   teaser: Release new versions into the wild.
@@ -139,7 +136,7 @@ challenges:
   difficulty: basic
   timelimit: 300
 - slug: parameterised-job
-  id: 7bbb43j2p7
+  id: y8xdemrcakn7
   type: challenge
   title: Parameterised job
   teaser: Dispatch existing jobs with different parameters.
@@ -166,7 +163,7 @@ challenges:
   difficulty: basic
   timelimit: 300
 - slug: service-discovery
-  id: wpdd5qjlkw
+  id: ffskz6mxzu2m
   type: challenge
   title: Service discovery
   teaser: Discover nomad services.
@@ -195,7 +192,7 @@ challenges:
   difficulty: basic
   timelimit: 300
 - slug: fabio
-  id: 7yqqkn36dw
+  id: 27qoekjot6vp
   type: challenge
   title: Fabio
   teaser: Expose nomad services to the internet.
@@ -218,4 +215,4 @@ challenges:
     hostname: nomad
   difficulty: basic
   timelimit: 300
-checksum: "10777651410091445742"
+checksum: "11106780384709420992"
